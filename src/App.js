@@ -6,6 +6,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Particles from 'react-particles-js';
 import clarifai from 'clarifai';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 const app = new clarifai.App({
   apiKey: '5ee068d0215f4be4b3bde048589789ad'
@@ -30,8 +31,6 @@ class App extends Component {
       input: '',
     }
   }
-
-
 
   onInputChange = (event) => {
     console.log(event.target.value);
@@ -63,7 +62,7 @@ class App extends Component {
         <ImageLinkForm
          onInputChange={this.onInputChange}
          onButtonSubmit={this.onButtonSubmit} />
-       {/*  <FaceRecognition /> */}
+       <FaceRecognition />
       </div>
     );
   }
