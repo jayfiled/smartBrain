@@ -39,7 +39,7 @@ class App extends Component {
   onButtonSubmit= () => {
     console.log('clicked');
     app.models.predict(
-      "a403429f2ddf4b49b307e318f00e528b", 
+      clarifai.COLOR_MODEL,
       "https://samples.clarifai.com/face-det.jpg")
       .then(
     function(response) {
