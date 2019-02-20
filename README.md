@@ -1,4 +1,4 @@
-# freeCodeCamp
+# smart brain - face recognition
 
 This repository is a work in progress of a full stack app [Smart Brain](https://facial-recog.netlify.com/) that uses a machine learning AI  API (clarifAI) to detect faces, colours, things in pictures.
 
