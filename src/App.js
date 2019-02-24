@@ -35,13 +35,17 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
+    // get the bounding box numbers to calculate where the face border is in the pic
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
     return {
+      // left-col property (in percentage) * the width of the image
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
+      // the calculation starts from the left by default, so 
+      // subtract the width/height to get the other boundary
       rightCol: width - (clarifaiFace.right_col * width),
       bottomRow: height - (clarifaiFace.bottom_row * height)
 
@@ -80,7 +84,10 @@ class App extends Component {
         <ImageLinkForm
          onInputChange={this.onInputChange}
          onButtonSubmit={this.onButtonSubmit} />
-       <FaceRecognition imageUrl={this.state.imageUrl} />
+       <FaceRecognition 
+       imageUrl={this.state.imageUrl}
+       faceBox={this.state.box}
+       />
       </div>
     );
   }
