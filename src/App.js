@@ -38,6 +38,7 @@ class App extends Component {
     }
   }
 
+
   calculateFaceLocation = (data) => {
     // get the bounding box numbers to calculate where the face border is in the pic
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
