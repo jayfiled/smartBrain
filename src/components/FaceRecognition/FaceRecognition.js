@@ -7,7 +7,7 @@ const FaceRecognition = ({ imageUrl, faceBox }) => {
     return (
         <div className="center ma">
             <div className="absolute mt2">
-                <img id="inputImage" class="image" src={imageUrl} alt=""/>
+                <img id="inputImage" className="image" src={imageUrl} alt=""/>
                 <div className="bounding-box" style={{top: faceBox.topRow, right: faceBox.rightCol, bottom: faceBox.bottomRow, left: faceBox.leftCol}}></div>
             </div>
         </div>
