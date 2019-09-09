@@ -11,8 +11,10 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Register from './components/Register/Register'
 // import { pathToFileURL } from 'url';
 
+const API_KEY = `${process.env.REACT_APP_CLARIFAIAPIKEY}`
+
 const app = new clarifai.App({
-  apiKey: '5ee068d0215f4be4b3bde048589789ad'
+  apiKey: API_KEY
 })
 
 const particlesOptions = {
@@ -105,8 +107,9 @@ class App extends Component {
               id: this.state.user.id
             }) 
           })
-          .then(response => {
-            console.log(response) //this.setState.user.entries
+          .then(response => response.json())
+          .then( count => {
+            this.setState(Object.assign(this.state.user, { entries: count}))
           })
         }
       })
