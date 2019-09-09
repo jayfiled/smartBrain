@@ -9,6 +9,7 @@ import Particles from 'react-particles-js';
 import clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Register from './components/Register/Register'
+// import { pathToFileURL } from 'url';
 
 const app = new clarifai.App({
   apiKey: '5ee068d0215f4be4b3bde048589789ad'
@@ -95,7 +96,20 @@ class App extends Component {
     app.models.predict(
       clarifai.FACE_DETECT_MODEL,
       this.state.input)
-      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
+      .then(response => {
+        if (response) {
+          fetch('http://localhost:3001/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            }) 
+          })
+          .then(response => {
+            console.log(response) //this.setState.user.entries
+          })
+        }
+      })
       .catch(err => console.log(err))
   }
 
@@ -124,7 +138,10 @@ class App extends Component {
         { this.state.route === 'home'
         ? <div>
             <Logo />
-            <Rank user={this.state.user} />
+            <Rank 
+            name={this.state.user.name} 
+            entries={this.state.user.entries}
+            />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit} 
